@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSAD</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif;}
+    body {background:#0a0a0a; color:#fff; overflow-x:hidden; transition:background 0.5s, color 0.5s;}
+    a {text-decoration:none; color:inherit;}
+    html {scroll-behavior:smooth;}
+
+    nav {
+      position:fixed; top:0; left:0; width:100%;
+      background:rgba(0,0,0,0.7); padding:15px 50px;
+      display:flex; justify-content:space-between; align-items:center;
+      z-index:1000; backdrop-filter:blur(10px);
+    }
+    nav h1 {font-size:24px; color:#00ffe5; letter-spacing:2px; text-shadow:0 0 10px #00ffe5;}
+    nav ul {display:flex; gap:30px; list-style:none;}
+    nav ul li {transition:0.3s; cursor:pointer;}
+    nav ul li:hover {transform:scale(1.2); color:#00ffe5; text-shadow:0 0 15px #00ffe5;}
+
+    .toggle-btn {
+      background:#00ffe5; border:none; padding:8px 15px;
+      border-radius:20px; cursor:pointer; font-weight:bold;
+      transition:0.4s; color:#111;
+    }
+    .toggle-btn:hover {background:#00bfa5; color:#fff;}
+
+    /* Tombol Musik */
+    #music-btn {
+      position:fixed; bottom:20px; right:20px;
+      background:#00ffe5; border:none; padding:15px 20px;
+      border-radius:50%; cursor:pointer; font-size:18px;
+      box-shadow:0 0 15px #00ffe5;
+      transition:transform 0.4s, background 0.4s;
+      z-index:1000;
+    }
+    #music-btn:hover {
+      transform:scale(1.2) rotate(10deg);
+      background:#00bfa5;
+      box-shadow:0 0 25px #00ffe5;
+      color:#fff;
+    }
+
+    header {
+      height:100vh; display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center; background:url('https://gontor.ac.id/wp-content/uploads/2023/09/DCC-Gontor.jpg') center/cover fixed no-repeat;
+      position:relative; overflow:hidden;
+    }
+    header::after {
+      content:""; position:absolute; inset:0;
+      background:rgba(0,0,0,0.6);
+    }
+    header h2 {
+      font-size:60px; font-weight:bold; z-index:1; color:#00ffe5;
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+    header p {
+      font-size:22px; margin-top:20px; z-index:1;
+      animation: fadeInUp 2s ease-out;
+    }
+    @keyframes glowText {
+      from {text-shadow:0 0 10px #00ffe5, 0 0 20px #00ffe5;}
+      to {text-shadow:0 0 30px #00ffe5, 0 0 60px #00ffe5;}
+    }
+    @keyframes fadeInUp {
+      from {opacity:0; transform:translateY(50px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+
+    section {padding:80px 10%;}
+
+    .portfolio {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+      gap:40px; margin-top:40px;
+    }
+    .card {
+      background:#111; padding:25px; border-radius:15px;
+      text-align:center; transition:transform 0.6s, box-shadow 0.6s;
+      box-shadow:0 0 15px rgba(0,255,229,0.2);
+      transform-style: preserve-3d;
+    }
+    .card:hover {transform:rotateY(10deg) rotateX(10deg) scale(1.05); box-shadow:0 0 30px rgba(0,255,229,0.6);}
+    .card img {width:100%; border-radius:10px; margin-bottom:20px;}
+    .card h3 {margin-bottom:10px; color:#00ffe5;}
+
+    .news {margin-top:50px;}
+    .news-article {
+      background:#111; padding:30px; border-radius:15px;
+      margin-bottom:30px; transition:0.4s;
+      opacity:0; transform:translateY(50px);
+    }
+    .news-article:hover {background:#1a1a1a; transform:scale(1.02);}
+    .news-article h4 {color:#00ffe5; margin-bottom:15px;}
+    .news-article img {width:100%; border-radius:10px; margin:15px 0;}
+
+    #contact p {margin:8px 0;}
+    #contact a {color:#00ffe5; font-weight:bold;}
+    #berita img {width: 25%; height: auto;} 
+
+    footer {
+      text-align:center; padding:40px; background:#111; margin-top:50px;
+      font-size:14px; color:#aaa;
+    }
+
+    body.dark {background:#f4f4f4; color:#111;}
+    body.dark nav {background:rgba(255,255,255,0.8);}
+    body.dark .card, body.dark .news-article, body.dark footer {background:#fff; color:#111;}
+    body.dark nav h1, body.dark h2, body.dark h3, body.dark h4 {color:#00796b;}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <h1>NSAD</h1>
+    <ul>
+      <li><a href="#home">Beranda</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#berita">Berita</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Mode</button>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <h2>About Me </h2>
+    <p>Naufal Syamil Adz Dzaki
+      [NSAD]
+    </p>
+  </header>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2 style="color:#00ffe5; text-align:center;">Portfolio</h2>
+    <div class="portfolio">
+      <div class="card">
+        <img src="./DCC awan 1.jpg" alt="Coding">
+        <h3>Darussalam Computer Center</h3>
+        <p><abbr> <title>Darussalam Computer Center</title>dcc</abbr> Merupakan salah satu bagian pondok yang berperan<cite>penting.</cite>.</p>
+      </div>
+      <div class="card">
+        <img src="./IMG_9807.JPG" alt="Cadre Of DCC">
+        <h3>Naufal Syamil Adz Dzaki</h3>
+        <p>Gk bisa apa apa</p>
+      </div>
+      <div class="card">
+        <img src="./_Blue DCC Logo.png" alt="Logo">
+        <h3>Your Best Choice To Face Your Global World</h3>
+        <p><cite>CTRL+ALT+DEL</cite>
+        Control Your ALT Delete Your Vices</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BERITA -->
+  <section id="berita">
+    <h2 style="color:#00ffe5; text-align:center;">Berita Gontor</h2>
+    <div class="news">
+      <div class="news-article">
+        <h4>Gedung DCC Gontor Pusat</h4>
+        <img src="./DCC_.png" alt="Gedung DCC Gontor" width="250"> 
+        <p>Gedung Darussalam Conference Center (DCC) menjadi pusat kegiatan internasional Pondok Modern Darussalam Gontor. Fasilitas modern ini mendukung seminar, konferensi, dan acara besar berskala nasional maupun internasional.
+          Dengan Tujuan Yaitu Menghasilkan Individu Muslim yang mahir dalam bidang technologi ionformasi dan komunikasi bertaraf internasional.
+          dan juga memiliki VISI Yaitu menjadi pusat perkembangan dalam bidang technologi.
+        </p>
+        
+      </div>
+      <div class="news-article">
+        <h2> What is Gigabyte?</h2>
+        <img src="./Logo.png" alt="In DCC Building">
+        <p>Gigabyte adalah CO-Assistant yang ada di DCC </p>
+
+        
+        <h2>Who is Gigabyte job?</h2>
+        <p>Mempermudah Pekerjaan Assistant kelas 5 dan 6</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="text-align:center;">
+    <h2 style="color:#00ffe5;">Kontak</h2>
+    <p>Email: <a href="mailto:NSADGAMING@gmail.com">NSADGAMING@gmail.com</a></p>
+    <p>Instagram: <a href="https://instagram.com/syamil1r" target="_blank">@syamil1r</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 NSAD Website | Dibuat dengan ❤️ untuk Gontor
+  </footer>
+
+  <!-- Musik -->
+  <audio id="bg-music" loop autoplay>
+    <source src="Crash Adams - New Heart (Official Lyric Video).mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-btn" onclick="toggleMusic()">🔊</button>
+
+  <script>
+    // Dark Mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Animasi scroll
+    const faders = document.querySelectorAll('.news-article');
+    const appearOptions = { threshold: 0.2 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        entry.target.style.transition = "all 0.8s ease-out";
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Musik control
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.getElementById("music-btn");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "🔊";
+      } else {
+        music.pause();
+        musicBtn.textContent = "🔇";
+      }
+    }
+  </script>
+</body>
+</html>
